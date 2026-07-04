@@ -954,7 +954,7 @@ class ContractManager(QtWidgets.QWidget):
     def load_contract(self):
         contractfile = Path.cwd().joinpath("etc/ctpcontract.yaml")
         with open(contractfile, encoding='utf8') as fc:
-            contracts = yaml.load(fc)
+            contracts = yaml.safe_load(fc)
         print('loading contracts, total number:', len(contracts))
         for sym, data in contracts.items():
             contract = ContractData(

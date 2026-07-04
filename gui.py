@@ -20,7 +20,7 @@ def main():
         path = os.path.abspath(os.path.dirname(__file__))
         config_file = os.path.join(path, 'etc/config_server.yaml')
         with open(os.path.expanduser(config_file), encoding='utf8') as fd:
-            config_server = yaml.load(fd)
+            config_server = yaml.safe_load(fd)
     except IOError:
         print("config_server.yaml is missing")
 
@@ -29,7 +29,7 @@ def main():
         path = os.path.abspath(os.path.dirname(__file__))
         config_file = os.path.join(path, 'etc/config_client.yaml')
         with open(os.path.expanduser(config_file), encoding='utf8') as fd:
-            config_client = yaml.load(fd)
+            config_client = yaml.safe_load(fd)
     except IOError:
         print("config_client.yaml is missing")
 
@@ -43,7 +43,7 @@ def main():
             config_file = os.path.join(path, 'source/gui/language/cn/live_text.yaml')
             font = QtGui.QFont(u'微软雅黑', 10)
         with open(os.path.expanduser(config_file), encoding='utf8') as fd:
-            lang_dict = yaml.load(fd)
+            lang_dict = yaml.safe_load(fd)
         lang_dict['font'] = font
     except IOError:
         print("live_text.yaml is missing")

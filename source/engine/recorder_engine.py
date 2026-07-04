@@ -47,7 +47,7 @@ class RecorderEngine(BaseEngine):
             self.gateway = gateway
         filepath = Path.cwd().joinpath("etc/" + self.config_filename)
         with open(filepath, encoding='utf8') as fd:
-            self._config = yaml.load(fd)
+            self._config = yaml.safe_load(fd)
 
         self.tick_recordings = {}
         self.bar_recordings = {}
@@ -75,7 +75,7 @@ class RecorderEngine(BaseEngine):
     def load_contract(self):
         contractfile = Path.cwd().joinpath("etc/ctpcontract.yaml")
         with open(contractfile, encoding='utf8') as fc:
-            contracts = yaml.load(fc)
+            contracts = yaml.safe_load(fc)
         print('loading contracts, total number:', len(contracts))
         for sym, data in contracts.items():
             contract = ContractData(

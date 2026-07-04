@@ -57,7 +57,7 @@ class StrategyEngine(BaseEngine):
             self.config_filename = configfile
         filepath = Path.cwd().joinpath("etc/" + self.config_filename)
         with open(filepath, encoding='utf8') as fd:
-            self._config = yaml.load(fd)
+            self._config = yaml.safe_load(fd)
         self.ordercount = 0
 
         #  stragegy manage
@@ -127,7 +127,7 @@ class StrategyEngine(BaseEngine):
     def load_contract(self):
         contractfile = Path.cwd().joinpath("etc/ctpcontract.yaml")
         with open(contractfile, encoding='utf8') as fc:
-            contracts = yaml.load(fc)
+            contracts = yaml.safe_load(fc)
         print('loading contracts, total number:', len(contracts))
         for sym, data in contracts.items():
             contract = ContractData(
